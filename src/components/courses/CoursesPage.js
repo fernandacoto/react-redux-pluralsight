@@ -18,7 +18,7 @@ class CoursesPage extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createCourse(this.state.course);
+    this.props.actions.createCourse(this.state.course);
   };
 
   render() {
@@ -41,7 +41,7 @@ class CoursesPage extends React.Component {
 }
 
 CoursesPage.propTypes = {
-  createCourse: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired
 };
 
@@ -50,12 +50,11 @@ function mapStateToProps(state) {
     courses: state.courses
   };
 }
-
-// when mapDispatchToProps is declared as an object
-// each property is automatically bound to dispatch
-const mapDispatchToProps = {
-  createCourse: courseActions.createCourse
-};
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(courseActions, dispatch)
+  };
+}
 
 export default connect(
   mapStateToProps,
