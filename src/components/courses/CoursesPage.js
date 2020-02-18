@@ -8,7 +8,6 @@ import CourseList from "./CourseList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
-import { totalmem } from "os";
 
 class CoursesPage extends React.Component {
   state = {
